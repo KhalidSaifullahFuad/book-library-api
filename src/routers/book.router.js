@@ -2,12 +2,14 @@
 const express = require("express");
 const router = express.Router();
 
+// Middleware
 router.use(express.json());
 
 // Services
 const bookService = require("../services/book.service");
 
 // Routes
+//--> GET - /api/book
 router.get("/", async (req, res) => {
 	try{
 		const books = await bookService.getAllBooks();
@@ -17,6 +19,7 @@ router.get("/", async (req, res) => {
 	}
 });
 
+//--> GET - /api/book/:id
 router.get("/:id", async (req, res) => {
 	try{
 		const book = await bookService.getBookById(req.params.id);
@@ -27,6 +30,7 @@ router.get("/:id", async (req, res) => {
 	};
 });
 
+//--> POST - /api/book
 router.post("/", async (req, res) => {
 	try{
 		const book = await bookService.addBook(req.body);
@@ -36,7 +40,7 @@ router.post("/", async (req, res) => {
 	}
 });
 
-
+//--> PUT - /api/book/:id
 router.put("/:id", async (req, res) => {
 	try{
 		const book = await bookService.updateBook(req.params.id, req.body);
@@ -47,6 +51,7 @@ router.put("/:id", async (req, res) => {
 	}
 });
 
+//--> DELETE - /api/book/:id
 router.delete("/:id", async (req, res) => {
 	try {
 		const book = await bookService.deleteBook(req.params.id);

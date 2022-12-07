@@ -3,14 +3,15 @@ const express = require("express");
 const app = express();
 
 // Router Middleware
-const userRouter = require("./src/routers/user.router");
 const bookRouter = require("./src/routers/book.router");
 
 // Environment Variables
 const PORT = process.env.PORT || 3000;
 
-
+// Middleware
 app.use(express.json());
+app.use("/api/book", bookRouter);
+
 app.get("/", (req, res) => {
 	res.status(200).json({
 		api: "Book Library API",
@@ -20,8 +21,6 @@ app.get("/", (req, res) => {
 });
 
 
-app.use("/api/user", userRouter);
-app.use("/api/book", bookRouter);
 
 app.listen(PORT, (err) => {
 	if (err) console.error(err);

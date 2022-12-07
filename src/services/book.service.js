@@ -3,6 +3,7 @@ const Book = require('../models/book.model.json');
 
 // Service methods
 class BookService {
+
     static getAllBooks() {
         return Promise.resolve(Book);
     }
