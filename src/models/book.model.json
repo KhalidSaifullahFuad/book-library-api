@@ -1,6 +1,6 @@
 [
     {
-        "id": 1,
+        "id": "a15c2caa-129c-4bb6-b579-42ed861aea15",
         "title": "The Lord of the Rings",
         "author": "J.R.R. Tolkien",
         "year": 1954,
@@ -9,7 +9,7 @@
         "price": 29.99
     },
     {
-        "id": 2,
+        "id": "68088c71-e25a-4182-98d4-89ed2c63e3df",
         "title": "The Hobbit",
         "author": "J.R.R. Tolkien",
         "year": 1937,
@@ -18,7 +18,7 @@
         "price": 19.99
     },
     {
-        "id": 3,
+        "id": "f0c7891e-fde3-4b2c-985a-01396f163f8c",
         "title": "The Silmarillion",
         "author": "J.R.R. Tolkien",
         "year": 1977,
@@ -27,7 +27,7 @@
         "price": 24.99
     },
     {
-        "id": 4,
+        "id": "830d8a2e-9e6c-4812-b326-5942fd5ed3bf",
         "title": "The Hitchhiker's Guide to the Galaxy",
         "author": "Douglas Adams",
         "year": 1979,
@@ -36,7 +36,7 @@
         "price": 14.99
     },
     {
-        "id": 5,
+        "id": "36e3dc87-2f5e-49d8-98c5-c6e7c2dab117",
         "title": "The Restaurant at the End of the Universe",
         "author": "Douglas Adams",
         "year": 1980,
@@ -45,7 +45,7 @@
         "price": 14.99
     },
     {
-        "id": 6,
+        "id": "80c06b26-459d-449e-98b2-20c4b56be2e9",
         "title": "Life, the Universe and Everything",
         "author": "Douglas Adams",
         "year": 1982,
@@ -54,7 +54,7 @@
         "price": 14.99
     },
     {
-        "id": 7,
+        "id": "ff8a04ee-6483-47d9-9622-28f88e4ea510",
         "title": "So Long, and Thanks for All the Fish",
         "author": "Douglas Adams",
         "year": 1984,
