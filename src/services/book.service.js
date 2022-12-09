@@ -14,7 +14,7 @@ class BookService {
             const index = Book.findIndex(book => book.id === id);
 
             if (index === -1) {
-                return reject({ "message": "Book not found" });
+                return reject("Book not found");
             }
             resolve(Book[index]);
         });
@@ -35,7 +35,7 @@ class BookService {
             const index = Book.findIndex(book => book.id === id);
 
             if (index === -1) {
-                return reject({ "message": "Book not found" });
+                return reject("Book not found");
             }
             Book[index] = book;
             resolve(Book[index]);
@@ -47,7 +47,7 @@ class BookService {
             const index = Book.findIndex(book => book.id === id);
 
             if (index === -1) {
-                return reject({ "message": "Book not found" });
+                return reject("Book not found");
             }
             Book.splice(index, 1);
             resolve("Book deleted");
