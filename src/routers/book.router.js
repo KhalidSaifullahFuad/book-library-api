@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
 		const books = await bookService.getAllBooks();
 		res.status(200).json(books);
 	}catch(err){
-		res.status(400).json(err);
+		res.status(400).json({"message": err.message});
 	}
 });
 
@@ -81,6 +81,3 @@ router.use((req, res) => {
 });
 
 module.exports = router;
-
-// push force to github
-// git push -f origin master

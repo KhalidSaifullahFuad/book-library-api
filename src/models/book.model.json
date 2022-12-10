@@ -1,65 +1,56 @@
 [
     {
-        "id": "a15c2caa-129c-4bb6-b579-42ed861aea15",
+        "title": "The Great Gatsby",
+        "author": "F. Scott Fitzgerald",
+        "published": 1925,
+        "genres": ["Fiction", "Classics"],
+        "publisher": "Charles Scribner's Sons",
+        "pages": 180,
+        "language": "English"
+    },
+    {
+        "title": "The Catcher in the Rye",
+        "author": "J.D. Salinger",
+        "published": 1951,
+        "genres": ["Fiction", "Classics"],
+        "publisher": "Little, Brown and Company",
+        "pages": 277,
+        "language": "English"
+    },
+    {
+        "title": "The Grapes of Wrath",
+        "author": "John Steinbeck",
+        "published": 1939,
+        "genres": ["Fiction", "Classics"],
+        "publisher": "The Viking Press",
+        "pages": 464,
+        "language": "English"
+    },
+    {
         "title": "The Lord of the Rings",
         "author": "J.R.R. Tolkien",
-        "year": 1954,
-        "genre": "Fantasy",
+        "published": 1954,
+        "genres": ["Fiction", "Fantasy"],
+        "publisher": "George Allen & Unwin",
         "pages": 1216,
-        "price": 29.99
+        "language": "English"
     },
     {
-        "id": "68088c71-e25a-4182-98d4-89ed2c63e3df",
         "title": "The Hobbit",
         "author": "J.R.R. Tolkien",
-        "year": 1937,
-        "genre": "Fantasy",
-        "pages": 310,
-        "price": 19.99
+        "published": 1937,
+        "genres": ["Fiction", "Fantasy"],
+        "publisher": "George Allen & Unwin",
+        "pages": 366,
+        "language": "English"
     },
     {
-        "id": "f0c7891e-fde3-4b2c-985a-01396f163f8c",
-        "title": "The Silmarillion",
-        "author": "J.R.R. Tolkien",
-        "year": 1977,
-        "genre": "Fantasy",
-        "pages": 488,
-        "price": 24.99
-    },
-    {
-        "id": "830d8a2e-9e6c-4812-b326-5942fd5ed3bf",
-        "title": "The Hitchhiker's Guide to the Galaxy",
-        "author": "Douglas Adams",
-        "year": 1979,
-        "genre": "Science Fiction",
-        "pages": 224,
-        "price": 14.99
-    },
-    {
-        "id": "36e3dc87-2f5e-49d8-98c5-c6e7c2dab117",
-        "title": "The Restaurant at the End of the Universe",
-        "author": "Douglas Adams",
-        "year": 1980,
-        "genre": "Science Fiction",
-        "pages": 160,
-        "price": 14.99
-    },
-    {
-        "id": "80c06b26-459d-449e-98b2-20c4b56be2e9",
-        "title": "Life, the Universe and Everything",
-        "author": "Douglas Adams",
-        "year": 1982,
-        "genre": "Science Fiction",
-        "pages": 224,
-        "price": 14.99
-    },
-    {
-        "id": "ff8a04ee-6483-47d9-9622-28f88e4ea510",
-        "title": "So Long, and Thanks for All the Fish",
-        "author": "Douglas Adams",
-        "year": 1984,
-        "genre": "Science Fiction",
-        "pages": 224,
-        "price": 14.99
+        "title": "The Lion, the Witch and the Wardrobe",
+        "author": "C.S. Lewis",
+        "published": 1950,
+        "genres": ["Fiction", "Fantasy"],
+        "publisher": "Geoffrey Bles",
+        "pages": 195,
+        "language": "English"
     }
 ]
