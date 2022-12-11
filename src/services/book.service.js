@@ -1,58 +1,76 @@
 // Dependencies
-const uuid = require('uuid');
-const Book = require('../models/book.model.json');
+const {MongoClient, ObjectId} = require('mongodb');
+require('dotenv').config();
+
+const url = process.env.MONGODB_URI;
+const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
+
+const db = client.db('book_library_db');
+const collection = db.collection('books');
 
 // Service methods
 class BookService {
+    static async getAllBooks() {
+        const books = [];
+        await collection.find().forEach(book => books.push(book));
 
-    static getAllBooks() {
-        return Promise.resolve(Book);
+        if(books.length === 0)
+            throw new Error("No books found");
+
+        return books;
     }
 
-    static getBookById(id) {
-        return new Promise((resolve, reject) => {
-            const index = Book.findIndex(book => book.id === id);
+    static async getBookById(id) {
+        const book = await collection.findOne({ _id: ObjectId(id) });
 
-            if (index === -1) {
-                return reject("Book not found");
-            }
-            resolve(Book[index]);
-        });
+        if(result === null)
+            throw new Error("Book not found");
+
+        return book;
     }
 
-    static addBook(book) {
-        return new Promise((resolve, reject) => {
-            const id = uuid.v4();
-            const newBook = { id, ...book };
+    static async addBook(book) {
+        const result = await collection.insertOne(book);
 
-            Book.push(newBook);
-            resolve(newBook);
-        });
+        if(result.insertedCount === 0)
+            throw new Error("Book not added");
+
+        return book;
     }
 
-    static updateBook(id, book) {
-        return new Promise((resolve, reject) => {
-            const index = Book.findIndex(book => book.id === id);
+    static async updateBook(id, book) {
+        const result = await collection.findOne({ _id: ObjectId(id) });
 
-            if (index === -1) {
-                return reject("Book not found");
-            }
-            Book[index] = book;
-            resolve(Book[index]);
-        });
+        if(result === null)
+            throw new Error("Book not found");
+
+        const updatedBook = await collection.findOneAndUpdate(
+            { _id: ObjectId(id) },
+            { $set: book },
+            { returnOriginal: false }
+        );
+
+        if(updatedBook.value === null)
+            throw new Error("Book not updated");
+
+        return updatedBook.value;
     }
 
-    static deleteBook(id) {
-        return new Promise((resolve, reject) => {
-            const index = Book.findIndex(book => book.id === id);
+    static async deleteBook(id){
 
-            if (index === -1) {
-                return reject("Book not found");
-            }
-            Book.splice(index, 1);
-            resolve("Book deleted");
-        });
+        const result = await collection.findOne({ _id: ObjectId(id) });
+
+        if(result === null)
+            throw new Error("Book not found");
+
+        const deletedBook = await collection.findOneAndDelete({ _id: ObjectId(id) });
+
+        if(deletedBook.value === null)
+            throw new Error("Book not deleted");
+
+        return deletedBook.value;
     }
 }
+
 
 module.exports = BookService;
