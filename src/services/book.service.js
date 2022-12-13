@@ -1,76 +1,71 @@
 // Dependencies
-const {MongoClient, ObjectId} = require('mongodb');
-require('dotenv').config();
+const {db, ObjectId} = require('../services/db.service');
 
-const url = process.env.MONGODB_URI;
-const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
-
-const db = client.db('book_library_db');
+// MongoDB Collection
 const collection = db.collection('books');
 
 // Service methods
-class BookService {
-    static async getAllBooks() {
-        const books = [];
-        await collection.find().forEach(book => books.push(book));
+async function getAllBooks() {
+    const books = [];
+    await collection.find().forEach(book => books.push(book));
 
-        if(books.length === 0)
-            throw new Error("No books found");
+    if(books.length === 0)
+        throw new Error("No books found");
 
-        return books;
-    }
+    return books;
+}
 
-    static async getBookById(id) {
-        const book = await collection.findOne({ _id: ObjectId(id) });
+async function getBookById(id) {
+    const book = await collection.findOne({ _id: ObjectId(id) });
 
-        if(result === null)
-            throw new Error("Book not found");
+    if(book === null)
+        throw new Error("Book not found");
 
-        return book;
-    }
+    return book;
+}
 
-    static async addBook(book) {
-        const result = await collection.insertOne(book);
+async function addBook(book) {
+    const result = await collection.insertOne(book);
 
-        if(result.insertedCount === 0)
-            throw new Error("Book not added");
+    if(result.insertedCount === 0)
+        throw new Error("Book not added");
 
-        return book;
-    }
+    return book;
+}
 
-    static async updateBook(id, book) {
-        const result = await collection.findOne({ _id: ObjectId(id) });
+async function updateBook(id, book) {
+    const existingBook = await collection.findOne({ _id: ObjectId(id) });
 
-        if(result === null)
-            throw new Error("Book not found");
+    if(existingBook === null)
+        throw new Error("Book not found");
 
-        const updatedBook = await collection.findOneAndUpdate(
-            { _id: ObjectId(id) },
-            { $set: book },
-            { returnOriginal: false }
-        );
+    const updatedBook = await collection.findOneAndUpdate(
+        { _id: ObjectId(id) },
+        { $set: book },
+        { returnOriginal: false }
+    );
 
-        if(updatedBook.value === null)
-            throw new Error("Book not updated");
+    if(updatedBook.value === null)
+        throw new Error("Book not updated");
 
-        return updatedBook.value;
-    }
+    return updatedBook.value;
+}
 
-    static async deleteBook(id){
+async function deleteBook(id){
 
-        const result = await collection.findOne({ _id: ObjectId(id) });
+    const book = await collection.findOne({ _id: ObjectId(id) });
 
-        if(result === null)
-            throw new Error("Book not found");
+    if(book === null)
+        throw new Error("Book not found");
 
-        const deletedBook = await collection.findOneAndDelete({ _id: ObjectId(id) });
+    const deletedBook = await collection.findOneAndDelete({ _id: ObjectId(id) });
 
-        if(deletedBook.value === null)
-            throw new Error("Book not deleted");
+    if(deletedBook.value === null)
+        throw new Error("Book not deleted");
 
-        return deletedBook.value;
-    }
+    return deletedBook.value;
 }
 
 
-module.exports = BookService;
+
+module.exports = {getAllBooks, getBookById, addBook, updateBook, deleteBook};
