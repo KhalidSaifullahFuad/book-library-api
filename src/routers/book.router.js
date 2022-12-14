@@ -8,6 +8,9 @@ router.use(express.json());
 // Controllers
 const bookController = require("../controllers/book.controller");
 
+// Auth Middleware
+const verify = require("../middlewares/auth.middleware")
+
 
 // Routes
 //--> GET - /api/book
@@ -17,18 +20,13 @@ router.get("/", bookController.get);
 router.get("/:id", bookController.getById);
 
 //--> POST - /api/book
-router.post("/", bookController.add);
+router.post("/", verify, bookController.add);
 
 //--> PUT - /api/book/:id
-router.put("/:id", bookController.update);
+router.put("/:id", verify, bookController.update);
 
 //--> DELETE - /api/book/:id
-router.delete("/:id", bookController.remove);
+router.delete("/:id", verify, bookController.remove);
 
-router.use((req, res) => {
-	res.status(404).json({
-		message: "Invalid API Endpoint or Request Method",
-	});
-});
 
 module.exports = router;
