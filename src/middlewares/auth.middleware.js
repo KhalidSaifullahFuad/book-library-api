@@ -7,8 +7,8 @@ module.exports = function (req, res, next){
         return res.status(401).json({error : "Access denied"});
 
     try{
-        const token = jwt.verify(token, process.env.SECRET_TOKEN);
-        req.user = token;
+        const payload = jwt.verify(token, process.env.SECRET_TOKEN);
+        req.user = payload;
         next();
     }catch(err){
         res.status(400).json({error : "Invalid token"});
