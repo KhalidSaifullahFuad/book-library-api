@@ -9,17 +9,17 @@ async function get(req, res, next) {
 		const books = await bookService.getAllBooks();
 		res.status(200).json(books);
 	}catch(err){
-		res.status(400).json({"message": err.message});
+		res.status(400).json({error: err.message});
 	}
 }
 
 async function getById(req, res) {
     try{
-        const book = bookService.getBookById(req.params.id);
+        const book = await bookService.getBookById(req.params.id);
         res.status(200).json(book);
     }
     catch(err){
-        res.status(404).json({"message": err.message})
+        res.status(404).json({error: err.message})
     };
 }
 
@@ -33,14 +33,14 @@ async function add(req, res) {
 
         res.status(201).json(book);
     }catch(err){
-        res.status(400).json({"message": err.message});
+        res.status(400).json({error: err.message});
     }
 }
 
 
 async function update(req, res) {
     try{
-        const result = bookSchema.validate(req.body);
+        const result = bookSchema.validate(req.body, options);
         if(result.error)
             throw new Error(result.error.details[0].message);
 
@@ -48,7 +48,7 @@ async function update(req, res) {
         res.status(200).json(book);
     }
     catch(err){
-        res.status(404).json({"message": err.message});
+        res.status(404).json({error: err.message});
     }
 }
 
@@ -58,7 +58,7 @@ async function remove(req, res) {
         res.status(200).json(book);
     }
     catch(err){
-        res.status(404).json({"message": err.message})
+        res.status(404).json({error: err.message})
     }
 }
 

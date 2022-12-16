@@ -66,6 +66,4 @@ async function deleteBook(id){
     return deletedBook.value;
 }
 
-
-
 module.exports = {getAllBooks, getBookById, addBook, updateBook, deleteBook};
